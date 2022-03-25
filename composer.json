@@ -1,0 +1,24 @@
+{
+    "name": "alumni/structure",
+    "description": "Structure MVC avec des modules.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zankidine ABDOU",
+            "email": "48620973+zankidine@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "autoload": {
+        "psr-4": {
+            "Alumni\\": "sources/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.4"
+    },
+    "require": {
+        "twig/twig": "^3.0"
+    }
+}
