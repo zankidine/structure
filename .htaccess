@@ -1,0 +1,12 @@
+# Redirection et réécriture d'url
+
+# Le serveur est autorisé à suivre les liens symbolique.
+#Option +FollowSymlinks
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+
