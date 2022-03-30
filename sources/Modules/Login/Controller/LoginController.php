@@ -10,5 +10,8 @@ use Alumni\Core\Controller\BaseController;
 
 class LoginController extends BaseController
 {
-
+    public function login()
+    {
+        require '../templates/index.html';
+    }
 }
