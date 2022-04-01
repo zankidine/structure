@@ -6,7 +6,7 @@
 
 namespace Alumni\Core\Database;
 
-class DatabaseConnexion
+class DatabaseConnection
 {
 
 }

@@ -7,25 +7,13 @@
 declare(strict_types=1);
 
 
-use Alumni\Modules\Home\Controller\HomeController;
-use Alumni\Modules\Login\Controller\LoginController;
-
 error_reporting(E_ALL);
+
+define("ROOT",dirname(__DIR__));
 
 // Inclusion de l'autoloader de composer
 require_once __DIR__ . "/../vendor/autoload.php";
 
-$router = new Alumni\Core\Router\Router();
+require_once __DIR__ . "/../sources/web.php";
 
 
-$router->get('/',[HomeController::class, 'index']);
-$router->get('/offre/(:id)', [HomeController::class, 'offre']);
-$router->get('/login',[LoginController::class, 'login']);
-$router->post('/login',[LoginController::class, 'register']);
-
-try {
-    $router->resolve();
-} catch (Exception $e) {
-
-    echo $e->getMessage("L");
-}

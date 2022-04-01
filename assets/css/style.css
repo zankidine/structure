@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: whitesmoke;
+    padding-block-start: 5rem;
+}
+
+.container
+{
+    width: 75rem;
+    max-width: 100%;
+    height: 30vh;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: #fff;
+    text-align: center;
+}
+
+h1
+{
+    margin-bottom: 2rem;
+}
+input
+{
+    height: 30px;
+}
+
+button
+{
+    height: 30px;
+    width: 150px;
+    cursor: pointer;
+}

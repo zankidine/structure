@@ -12,11 +12,12 @@ class LoginController extends BaseController
 {
     public function login()
     {
-        require '../templates/index.html';
+        $this->render('/login/login.html.twig');
     }
 
     public function register()
     {
         dump($_POST);
+        //header('Location: /');
     }
 }

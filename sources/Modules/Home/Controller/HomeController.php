@@ -8,10 +8,10 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        require '../templates/index.html';
+       $this->render('/base.html.twig');
     }
 
-    public function offre($id)
+    public function offer($id)
     {
         echo $id;
     }

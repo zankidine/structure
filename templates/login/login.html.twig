@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Formulaire de connexion</h1>
+
+        <form method="post" action="/login">
+            <input type="text" name="nom">
+            <input type="text" name="prenom">
+            <button type="submit">Valier</button>
+        </form>
+    </div>
+
+{% endblock %}
