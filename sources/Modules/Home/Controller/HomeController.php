@@ -10,4 +10,9 @@ class HomeController extends BaseController
     {
         require '../templates/index.html';
     }
+
+    public function offre($id)
+    {
+        echo $id;
+    }
 }

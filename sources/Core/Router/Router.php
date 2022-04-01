@@ -15,6 +15,13 @@ class Router implements RouterInterface
     protected string $defaultController = "Alumni\\Core\\Controller\\NotFoundPageController";
     protected string $defaultMethode = 'index';
     /**
+     * @var array|string[]
+     */
+    protected array $patterns = [
+        ":id"=>"[0-9]+", // Accepte seulement les paramètres en chiffre
+        ":any"=>"[a-zA-Z0-9]+" // Accepte tout type de paramètre
+    ];
+    /**
      * @var Request
      */
     protected Request $request;
@@ -32,6 +39,7 @@ class Router implements RouterInterface
      */
     public function get($path, $action): void
     {
+        $path = $this->pregReplace($path);
         $this->routes[self::METHODE_GET][$path] = $action;
     }
 
@@ -40,7 +48,7 @@ class Router implements RouterInterface
      */
     public function post($path, $action): void
     {
-
+        $path = $this->pregReplace($path);
         $this->routes[self::METHODE_POST][$path] = $action;
     }
 
@@ -59,10 +67,16 @@ class Router implements RouterInterface
         if( $this->request->isGet($methode)) {
             foreach ($this->routes[self::METHODE_GET] as $path => $action)
             {
-                if ($url == $path)
-                {
-                    return $action;
+                if(preg_match("%^{$path}$%", $url, $matches) === 1){
+                    if ($url == $matches[0])
+                    {
+                        array_shift($matches);
+
+                        $action[] = $matches;
+                        return $action;
+                    }
                 }
+
             }
         }
         // Si c'est une méthode de type POST
@@ -81,6 +95,21 @@ class Router implements RouterInterface
         return false;
     }
 
+    /**
+     * @param $path
+     * @return array|mixed|string|string[]|null
+     */
+    protected function pregReplace($path)
+    {
+        // Parcourir le tableau des règles d'expression régulière
+        foreach ($this->patterns as $pattern => $replace)
+        {
+            // Remplace avec l'expression (correcte)
+            $path = preg_replace("/({$pattern})/",$replace,$path);
+        }
+
+        return $path;
+    }
 
     /**
      * @throws Exception
@@ -96,6 +125,15 @@ class Router implements RouterInterface
             // On récupèse la méthode de la classe
             $methode = $this->match($this->requestUri, $this->requestMethode)[1];
 
+            // Paramètres
+            if ($this->request->methode() == "POST")
+            {
+                $params = $_POST;
+            } else {
+                $params = $this->match($this->requestUri, $this->requestMethode)[2];
+            }
+
+
             // Si la classe n'existe pas, affiche une erreur
             if (class_exists($className))
             {
@@ -104,9 +142,8 @@ class Router implements RouterInterface
                {
                     //Instanciation de la classe
                     $className = new $className;
-
                     // Exécution de la méthode
-                   call_user_func([$className, $methode]);
+                   call_user_func_array([$className, $methode], $params);
 
                } else {
                    throw new Exception("La methode n'existe pas.");

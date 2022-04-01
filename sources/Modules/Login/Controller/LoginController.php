@@ -14,4 +14,9 @@ class LoginController extends BaseController
     {
         require '../templates/index.html';
     }
+
+    public function register()
+    {
+        dump($_POST);
+    }
 }

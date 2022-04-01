@@ -19,8 +19,9 @@ $router = new Alumni\Core\Router\Router();
 
 
 $router->get('/',[HomeController::class, 'index']);
+$router->get('/offre/(:id)', [HomeController::class, 'offre']);
 $router->get('/login',[LoginController::class, 'login']);
-$router->post('/login',[LoginController::class, 'login']);
+$router->post('/login',[LoginController::class, 'register']);
 
 try {
     $router->resolve();

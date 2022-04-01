@@ -17,6 +17,7 @@ class Request
      */
     public function uri(): string
     {
+        if(rtrim($_SERVER["REQUEST_URI"], '/') == "") return '/';
         return rtrim($_SERVER["REQUEST_URI"], '/');
     }
 
