@@ -7,19 +7,15 @@
 body {
     width: 100%;
     height: 100vh;
-    background-color: whitesmoke;
-    padding-block-start: 5rem;
+    background-color: red;
 }
 
 .container
 {
-    width: 75rem;
+    width: 950px;
+    height: 60vh;
     max-width: 100%;
-    height: 30vh;
-    padding: 2rem;
     margin: 0 auto;
-    background-color: #fff;
-    text-align: center;
 }
 
 h1
